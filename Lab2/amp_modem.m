@@ -25,13 +25,14 @@ ct=Ac*cos(2*pi*fc*tt);
 
 %message signal
 Am=1;
-fm = 1e3;
-mt = Am*cos(2*pi*fm*tt);
+Tm = 0.0005;
+fm = 1/T;
+mt = -2*sinc(tt/Tm);
 
 %max of absolute of m(t)
 maxmt = Am;
 %For 40% modulation
-ka=0.4/maxmt;
+ka=0.5/maxmt;
 
 %AM signal
 st = (1+ka*mt).*ct;
