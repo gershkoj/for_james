@@ -131,8 +131,10 @@ disp(RC);
 %RC = 10*Tm; %%RC constant too large, discharges too slowly and does not follow negative half cycle as well
 %disp(RC);
 
-%For 3.
-RC = 0.5*(Tm + 1/20e3);
+%F3.
+RC = 0.5(Tm + 1/20e3);
+
+
 
 %Envelope detector
 yt = st;
