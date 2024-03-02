@@ -24,18 +24,15 @@ Ac = 1;
 ct=Ac*cos(2*pi*fc*tt);
 
 %message signal
-Am=2;
+Am=1;
 Tm = 0.0005;
-fm = 1e3;
-%%mt = Am*cos(2*pi*fm*tt);
-mt = -Am*sinc(tt/Tm);
+fm = 1/T;
+mt = -2*sinc(tt/Tm);
 
 %max of absolute of m(t)
 maxmt = Am;
-%For 50% modulation
-%ka=0.5/maxmt;
-%For 200% modulation
-ka= 2/maxmt;
+%For 40% modulation
+ka=0.5/maxmt;
 
 %AM signal
 st = (1+ka*mt).*ct;
@@ -117,20 +114,8 @@ axis ([-25e3 25e3 0 max(abs(Sf))])
 %% Demodulation
 
 %time constant RC
-%2iii.)
-RC = 0.5*(1/1e6 + 1/fm); %look at mod_5 lecture notes. 1/fc should be 1 us and 1/w is 1 ms.This is optimal RC defined by a fc of 1e6 vs. 20e3 as defined by lab manual
-disp(RC);
-%Default RC
-%RC = 0.5*(1/fc + 1/fm); 
-%disp(RC);
-% 2i.)
-%RC = (1/fc); %%RC constant too small, charges too fast and discharges too fast and therefore oscillates at a frequency much larger than message frequency 
-%disp(RC);
-
-% 2ii.)
-%RC = 10*Tm; %%RC constant too large, discharges too slowly and does not follow negative half cycle as well
-%disp(RC);
-
+%This should be optimized to avoid envelope distortion 
+RC = 0.5*(1/fc + 1/fm);
 
 
 %Envelope detector
